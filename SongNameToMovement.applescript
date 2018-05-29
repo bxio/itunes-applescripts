@@ -15,13 +15,21 @@ tell application "iTunes"
 
 	set sizeOfSelection to (count of sel)--how many pieces are we working with
 	--define the work name
-	set workName to display dialog "Edit for Work name and then click OK." default answer (get name of item 1 of sel) --prompt for work name
+	set workName to display dialog "Composer: **Work Name**: Number. Movement Name\n\nEdit for Work name and then click OK." default answer (get name of item 1 of sel) --prompt for work name
 
 	--loop through the selection and change details
 	repeat with i from 1 to sizeOfSelection --set the movement numbers
 		set thisTrack to item i of sel
 		set songName to (get name of thisTrack)
-		set newSongName to display dialog "Edit for Movement Name and then click OK." default answer songName
+    set originalSongName to songName
+		set shortSongName to songName
+    --shorten and display the songname
+
+    set newSongName to display dialog "Composer: Work Name: Number. **Movement Name**\n\nEdit for Movement Name and then click OK." default answer songName
+
+
+
+
 		try
 			set movement of thisTrack to text returned of newSongName
 			set work of thisTrack to text returned of workName
